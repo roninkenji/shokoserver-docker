@@ -1,0 +1,2 @@
+# shokoserver-docker
+ShokoServer
