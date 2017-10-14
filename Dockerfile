@@ -19,7 +19,7 @@ COPY dockerinit.sh /opt
 RUN chmod +x /opt/dockerinit.sh
 WORKDIR /usr/src/app
 
-RUN git clone https://github.com/roninkenji/ShokoServer.git -n --recurse-submodules source && \
+RUN git clone -n --recurse-submodules https://github.com/roninkenji/ShokoServer.git source && \
 cd source && \
 git checkout ${COMMIT} && \
 wget https://github.com/NuGet/Home/releases/download/3.3/NuGet.exe && \
