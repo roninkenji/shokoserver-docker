@@ -19,11 +19,11 @@ COPY dockerinit.sh /opt
 RUN chmod +x /opt/dockerinit.sh
 WORKDIR /usr/src/app
 
-RUN git clone -n --recurse-submodules https://github.com/roninkenji/ShokoServer.git source && \
+RUN git clone -n --recurse-submodules https://github.com/ShokoAnime/ShokoServer.git source && \
 cd source && \
 # git checkout ${COMMIT} && \
 git submodule update --depth 1 --init --recursive && \
-wget https://github.com/NuGet/Home/releases/download/3.3/NuGet.exe && \
+wget "https://github.com/NuGet/Home/releases/download/3.3/NuGet.exe" && \
 mono NuGet.exe restore && \
 xbuild /property:Configuration=CLI /property:OutDir=/opt/shoko/ && \
 rm -rf /usr/src/app/source /opt/shoko/System.Net.Http.dll
