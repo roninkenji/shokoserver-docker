@@ -2,7 +2,7 @@ FROM mono:5.2
 
 #MAINTAINER Cayde Dixon <me@cazzar.net>
 
-ENV COMMIT bd860e6ec92e61dbfd5476aae3f20ff5c7203fd4
+# ENV COMMIT bd860e6ec92e61dbfd5476aae3f20ff5c7203fd4
 RUN curl https://bintray.com/user/downloadSubjectPublicKey?username=bintray | apt-key add - && \
 echo "deb http://dl.bintray.com/cazzar/shoko-deps jesse main" | tee -a /etc/apt/sources.list.d/shoko-deps.list
 
@@ -21,7 +21,7 @@ WORKDIR /usr/src/app
 
 RUN git clone -n --recurse-submodules https://github.com/roninkenji/ShokoServer.git source && \
 cd source && \
-git checkout ${COMMIT} && \
+# git checkout ${COMMIT} && \
 git submodule update --depth 1 --init --recursive && \
 wget https://github.com/NuGet/Home/releases/download/3.3/NuGet.exe && \
 mono NuGet.exe restore && \
