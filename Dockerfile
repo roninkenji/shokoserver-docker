@@ -22,7 +22,7 @@ WORKDIR /usr/src/app
 
 RUN git clone --recurse-submodules https://github.com/ShokoAnime/ShokoServer.git source && \
 cd source && \
-it checkout ${COMMIT} && \
+git checkout ${COMMIT} && \
 git submodule update --depth 1 --init --recursive && \wget "https://github.com/NuGet/Home/releases/download/3.3/NuGet.exe" && \
 mono NuGet.exe restore && \
 xbuild /property:Configuration=CLI /property:OutDir=/opt/shoko/ && \
