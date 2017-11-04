@@ -1,6 +1,7 @@
-FROM mono:5.2
+FROM mono:5.4
 
 #MAINTAINER Cayde Dixon <me@cazzar.net>
+MAINTAINER roninkenji <github@way-of-the-blade.com>
 
 ENV COMMIT master
 RUN curl https://bintray.com/user/downloadSubjectPublicKey?username=bintray | apt-key add - && \
@@ -21,8 +22,6 @@ WORKDIR /usr/src/app
 
 RUN git clone -n --recurse-submodules https://github.com/ShokoAnime/ShokoServer.git source && \
 cd source && \
-git checkout ${COMMIT} && \
-git submodule update --depth 1 --init --recursive && \
 wget "https://github.com/NuGet/Home/releases/download/3.3/NuGet.exe" && \
 mono NuGet.exe restore && \
 xbuild /property:Configuration=CLI /property:OutDir=/opt/shoko/ && \
@@ -30,4 +29,3 @@ rm -rf /usr/src/app/source /opt/shoko/System.Net.Http.dll
 WORKDIR /opt/shoko
 
 ENTRYPOINT /opt/dockerinit.sh
-
